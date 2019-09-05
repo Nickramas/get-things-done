@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Header } from '@nestjs/common';
 
 import { Message } from '@get-things-done/api-interfaces';
 
@@ -8,7 +8,8 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('hello')
+  @Get('message')
+  @Header('Access-Control-Allow-Origin', '*')
   getData(): Message {
     return this.appService.getData();
   }

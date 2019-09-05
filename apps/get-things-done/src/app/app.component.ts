@@ -8,6 +8,13 @@ import { Message } from '@get-things-done/api-interfaces';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
-  constructor(private http: HttpClient) {}
+  
+  public title = 'Get Things Done'
+  public message = ''
+
+  constructor(private http: HttpClient) {
+    this.http.get('http://127.0.0.1:3333/api/message').subscribe((data) => {
+      this.message = data.message
+    })
+  }
 }
